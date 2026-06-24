@@ -1,74 +1,83 @@
 #include <stdio.h>
 
-int fifamenu();
-
-int fifamenu()
+void fifamenu()
 {
     printf("\n<||*******####################################################******************||>");
-    printf("\n<||>########### this is a fifa world cup player information ########<||>");
+    printf("\n<||>########### FIFA WORLD CUP PLAYER INFORMATION ###########<||>");
     printf("\n<||*******####################################################******************||>");
-    printf("\n1  add");
-    printf("\n<||******************||>");
-    printf("\n2  see information");
-    printf("\n<||******************||>");
-    printf("\n3  exit");
-    printf("\n<||******************||>");
+    printf("\n1. Add Player");
+    printf("\n2. See Information");
+    printf("\n3. Exit");
+    printf("\n<||**********************************************************||>\n");
 }
 
 int main()
 {
-    int number[4];
-    char name[4][50];
-    char country[4][50];
+    int number[4] = {0};
+    char name[4][50] = {0};
+    char country[4][50] = {0};
+
     int option;
+    int dataAdded = 0;
 
     while (1)
     {
         fifamenu();
 
-        printf("\nchose any option : ");
+        printf("Choose any option: ");
         scanf("%d", &option);
-
-        if (option == 3)
-        {
-            break;
-        }
 
         switch (option)
         {
         case 1:
+            printf("\n===== Enter Player Details =====\n");
+
             for (int i = 0; i < 4; i++)
             {
-                for (int x = 0; x < 1; x++)
-                {
-                    printf("\nEnter a player id");
-                    scanf("%d", &number[i]);
+                printf("\nPlayer %d\n", i + 1);
 
-                    printf("Enter a player name");
-                    scanf("%s", &name[i][x]);
+                printf("Enter Player ID: ");
+                scanf("%d", &number[i]);
 
-                    printf("Enter a player country");
-                    scanf("%s", &country[i][x]);
-                }
+                printf("Enter Player Name: ");
+                scanf("%49s", name[i]);
+
+                printf("Enter Player Country: ");
+                scanf("%49s", country[i]);
             }
+
+            dataAdded = 1;
+            printf("\nPlayer information saved successfully!\n");
             break;
+
         case 2:
+            if (dataAdded == 0)
+            {
+                printf("\nNo player information available!\n");
+                printf("Please add player details first.\n");
+                break;
+            }
+
+            printf("\n===== Player Information =====\n");
+
             for (int i = 0; i < 4; i++)
             {
-                printf("\n####################*****************");
-                printf("\n player id :%d", number[i]);
-                printf("\n player name :%s", name[i]);
-                printf("\n player country :%s", country[i]);
-                printf("\n###################*******************\n");
+                printf("\n********************************");
+                printf("\nPlayer ID      : %d", number[i]);
+                printf("\nPlayer Name    : %s", name[i]);
+                printf("\nPlayer Country : %s", country[i]);
+                printf("\n********************************\n");
             }
             break;
 
         case 3:
-            break;
+            printf("\nExiting Program...\n");
+            return 0;
 
         default:
-            printf("\nnumber not valid ");
-            break;
+            printf("\nInvalid option! Please try again.\n");
         }
     }
+
+    return 0;
 }

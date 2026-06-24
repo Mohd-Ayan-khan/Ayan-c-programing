@@ -13,9 +13,9 @@ void fifamenu()
 
 int main()
 {
-    int number[4] = {0};
-    char name[4][50] = {0};
-    char country[4][50] = {0};
+    int number[4];
+    char name[4][50];
+    char country[4][50];
 
     int option;
     int dataAdded = 0;
